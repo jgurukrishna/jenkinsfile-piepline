@@ -1,0 +1,38 @@
+pipeline{
+    tools{
+        maven 'MyMaven'
+    }
+    agent any
+    stages{
+        stage('clone rep'){
+            steps{
+            //For comments
+            git 'https://github.com/jgurukrishna/DevOpsCodeDemo.git'
+            }
+        }
+         stage('Compile code'){
+            steps{
+            //For comments
+            sh 'mvn compile'
+            }
+        }
+         stage('Review code'){
+            steps{
+            //For comments
+            sh 'mvn pmd:pmd'
+            }
+        }
+         stage('Test code'){
+            steps{
+            //For comments
+            sh 'mvn test'
+            }
+        }
+         stage('Package code'){
+            steps{
+            //For comments
+            sh 'mvn package'
+            }
+        }
+    }
+}
